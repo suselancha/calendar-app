@@ -1,8 +1,7 @@
-import { findAllByTitle } from '@testing-library/react';
 import React from 'react';
 
 export const CalendarEvent = ({ event }) => {
-    console.log(event);
+    //console.log(event);
 
     const { title, user} = event;
 
