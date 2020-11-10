@@ -3,6 +3,7 @@ import moment from 'moment';
 
 const initialState = {
     events: [{
+        id: new Date().getTime(),
         title: 'Cumpleaños del Jefe',
         start: moment().toDate(),
         end: moment().add(2, 'hours').toDate(),
@@ -31,8 +32,31 @@ export const calendarReducer = ( state =  initialState, action) => {
                 ...state,
                 events: [
                     ...state.events,
-                    action.payload
+                    action.payload //Devuelve el nuevo evento
                 ]
+            }
+
+        case types.eventClearActiveEvent:
+            return {
+                ...state,
+                activeEvent: null
+            }
+
+        case types.eventUpdated:
+            return {
+                ...state,
+                events: state.events.map(
+                    e => (e.id === action.payload.id) ? action.payload : e //Devuelve el evento modificado, sino el evento asi como esta
+                )
+            }
+
+        case types.eventDeleted:
+            return {
+                ...state,
+                events: state.events.filter(
+                    e => (e.id !== state.activeEvent.id)
+                ),
+                activeEvent: null
             }
 
         default:
