@@ -1,4 +1,3 @@
-import { types } from "../types/types";
 import { fetchSinToken } from "../helpers/fetch";
 
 //Tarea asincrona
