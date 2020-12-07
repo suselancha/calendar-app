@@ -10,3 +10,12 @@ export const startLogin = ( email, password) => {
         console.log(body);
     }
 }
+
+export const setError = (err) => ({ 
+    type: types.uiSetError,
+    payload: err
+});
+
+export const removeError = (err) => ({ 
+    type: types.uiRemoveError
+});

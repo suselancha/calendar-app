@@ -1,13 +1,16 @@
 import React from 'react';
 import './login.css';
 import { useForm } from '../../hooks/useForm';
-import { useDispatch } from 'react-redux';
-import { startLogin } from '../../actions/auth';
+import { useDispatch, useSelector } from 'react-redux';
+import { setError } from '../../actions/ui';
+import validator from 'validator';
 
 export const LoginScreen = () => {
 
     const dispatch = useDispatch();
+    const { msgError } = useSelector(state => state.ui)
 
+    /* Formulacion Login */
     const [ formLoginValues, handleLoginInputChange ] = useForm({
         lEmail: 'dominiolibre@gmail.com',
         lPassword: '123456'
@@ -17,9 +20,23 @@ export const LoginScreen = () => {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        //console.log(formLoginValues);
-        dispatch(startLogin(lEmail, lPassword));
+        console.log(formLoginValues);
+        dispatch(setError('HOLA'));
+        //dispatch(startLogin(lEmail, lPassword));
     }
+
+
+
+    const mostrarMensaje = () => {
+        return (
+            <div className="auth_alert-error">
+                {msgError}
+            </div>
+        )
+        
+    }
+
+    /* Fin Formulacion Login */
 
     return (
         <div className="container login-container">
@@ -27,6 +44,9 @@ export const LoginScreen = () => {
                 <div className="col-md-6 login-form-1">
                     <h3>Ingreso</h3>
                     <form onSubmit={ handleLogin }>
+
+                        {msgError && mostrarMensaje()}
+                        
                         <div className="form-group">
                             <input 
                                 type="text"
