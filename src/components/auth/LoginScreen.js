@@ -28,7 +28,7 @@ export const LoginScreen = () => {
     /* Fin Formulario Login */
 
 
-    /* Formulario Registro */
+    /* REGISTRO DE USUARIO */
     const [ inputs, setInputs] = useState({
         rNombre: "",
         rApellido: "",
@@ -108,7 +108,7 @@ export const LoginScreen = () => {
         )
     }
 
-    /* Fin Formulario Registro */
+    /* FIN REGISTRO DE USUARIO */
 
     return (
         <div className="container login-container">

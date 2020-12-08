@@ -1,5 +1,5 @@
 import { types } from '../types/types';
-import { fetchSinToken } from '../helpers/fetch';
+import { fetchConToken, fetchSinToken } from '../helpers/fetch';
 import Swal from 'sweetalert2';
 import { finishLoading, startLoading } from './ui';
 
@@ -16,7 +16,7 @@ export const startLogin = ( correo, clave) => {
             localStorage.setItem('token-init-date', new Date().getTime());
             dispatch(login({
                 uid: body.uid,
-                name: body.name
+                nombre: body.nombre
             }))
             dispatch(finishLoading());
         } else {
@@ -34,6 +34,19 @@ export const startRegister = (nombre, apellido, correo, clave) => {
         const resp = await fetchSinToken('auth/new', { nombre, apellido, correo, clave }, 'POST');
         const body = await resp.json(); 
         console.log(body);
+        if (body.ok) {
+            localStorage.setItem('token', body.token);
+            localStorage.setItem('token-init-date', new Date().getTime());
+            dispatch(login({
+                uid: body.uid,
+                nombre: body.nombre
+            }))
+            dispatch(finishLoading());
+        } else {
+            //console.log (body.msg);
+            Swal.fire('Error', body.msg, 'error');
+            dispatch(finishLoading());
+        }
         
     }
 }
@@ -41,4 +54,40 @@ export const startRegister = (nombre, apellido, correo, clave) => {
 const login = (user) => ({
     type: types.authLogin,
     payload: user
+})
+
+export const startCheking = () => {
+    return async(dispatch) => {
+        const resp = await fetchConToken('auth/renew');
+        const body = await resp.json(); 
+        //console.log(body);
+        if (body.ok) {
+            localStorage.setItem('token', body.token);
+            localStorage.setItem('token-init-date', new Date().getTime());
+            dispatch(login({
+                uid: body.uid,
+                nombre: body.nombre
+            }))
+        } else {
+            //console.log (body.msg);
+            //Swal.fire('Error', body.msg, 'error');
+            dispatch(checkingFinish());
+            /* CUANDO TOKEN SEA INCORRECTO ENVIAR AL LOGIN*/
+        }
+    }
+}
+
+const checkingFinish = () => ({
+    type: types.authCheckingFinish
+})
+
+export const startLogout = () => {
+    return (dispatch) => {
+        localStorage.clear();
+        dispatch(logout());
+    }
+}
+
+const logout = () => ({
+    type: types.authLogout
 })
