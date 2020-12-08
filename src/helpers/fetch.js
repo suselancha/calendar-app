@@ -1,8 +1,7 @@
-const baseUrl = process.env.REACT_APP_API_URL;
+//const baseUrl = process.env.REACT_APP_API_URL;
+const baseUrl = "http://localhost:4000/api";
 
-
-
-export const fetchSinToken = (endpoint, data, method = 'GET') => {
+const fetchSinToken = (endpoint, data, method = 'GET') => {
 
     const url = `${ baseUrl }/${ endpoint }`;
 
@@ -17,4 +16,8 @@ export const fetchSinToken = (endpoint, data, method = 'GET') => {
             body: JSON.stringify(data)
         });
     }
+}
+
+export {
+    fetchSinToken
 }
