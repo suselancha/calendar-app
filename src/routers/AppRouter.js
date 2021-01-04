@@ -3,11 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
     BrowserRouter as Router,
     Switch,
-    Redirect
+    Redirect,
+    Route
   } from 'react-router-dom';
 import { startCheking } from '../actions/auth';
 import { LoginScreen } from '../components/auth/LoginScreen';
-import { PanelScreen } from '../components/dashboard/PanelScreen';
+import { InicioScreen } from '../components/frontend/InicioScreen';
+import { DashboardRoutes } from './DashboardRoutes';
 import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './PublicRoute';
 
@@ -36,9 +38,14 @@ export const AppRouter = () => {
                         component={ LoginScreen }
                         isAuthenticated={ !!uid }
                     />
-                    <PrivateRoute 
+                    <PrivateRoute
+                        path="/administrador"
+                        component={ DashboardRoutes } 
+                        isAuthenticated={ !!uid }
+                    />
+                    <Route 
                         exact path="/"
-                        component={ PanelScreen } 
+                        component={ InicioScreen } 
                         isAuthenticated={ !!uid }
                     />
                     <Redirect to="/" />
