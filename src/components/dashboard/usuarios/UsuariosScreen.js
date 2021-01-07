@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { startListar } from '../../../actions/usuario';
+import { startListar, startListarActivos } from '../../../actions/usuario';
 import { UsuariosListado } from './UsuariosListado';
 
 
@@ -10,13 +10,14 @@ export const UsuariosScreen = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(startListar());    
+        //dispatch(startListar());
+        dispatch(startListarActivos('true'));
+        dispatch(startListarActivos('false'));
     }, [dispatch])
 
     return (
         
-        <div>
-            <h3>Listado de usuarios</h3>
+        <div>            
             <UsuariosListado />
         </div>
     )

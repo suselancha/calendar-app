@@ -21,6 +21,8 @@ export const types = {
     uiStartLoading: '[ui] Start Loading',
     uiFinishLoading: '[ui] Finish Loading',
 
-    usuarioListar: '[usuario] Listar Usuarios'
+    usuarioListar: '[usuario] Listar Usuarios',
+    usuarioListarActivos: '[usuario] Listar Usuarios Activos',
+    usuarioListarInactivos: '[usuario] Listar Usuarios Inactivos'
 
 }

@@ -1,12 +1,18 @@
 import React from 'react';
 
-export const UsuarioEntrada = ({nombre, apellido}) => {
+export const UsuarioEntrada = (props) => {
 
-    //console.log(nombre, apellido);
-
+    //console.log(props);
+    const { usuarios } = props;
+    //console.log(usuarios);
+    
     return (
         <div>
-            <p>{ nombre } - { apellido }</p>
+            {
+                usuarios.map( value => (
+                    `${value.nombre} - ${value.apellido}`
+                ))
+            }
         </div>
     )
 }
