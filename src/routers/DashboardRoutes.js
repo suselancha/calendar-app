@@ -2,13 +2,14 @@ import React from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
 import { ClientesScreen } from '../components/dashboard/clientes/ClientesScreen'
 import { PanelScreen } from '../components/dashboard/PanelScreen'
-import { Navbar } from '../components/dashboard/ui/Navbar'
 import { UsuariosScreen } from '../components/dashboard/usuarios/UsuariosScreen'
+import { Admin } from '../layouts/Admin'
 
 export const DashboardRoutes = () => {
     return (
         <>
-            <Navbar />  
+            <Admin />
+            
             <div>
                 <Switch>
                     <Route
