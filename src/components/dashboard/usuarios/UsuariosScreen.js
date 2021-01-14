@@ -10,9 +10,9 @@ export const UsuariosScreen = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        //dispatch(startListar());
-        dispatch(startListarActivos('true'));
-        dispatch(startListarActivos('false'));
+        dispatch(startListar());
+        //dispatch(startListarActivos('true'));
+        //dispatch(startListarActivos('false'));
     }, [dispatch])
 
     return (
