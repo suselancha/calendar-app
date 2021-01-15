@@ -11,26 +11,24 @@ export const UsuariosListado = () => {
     const [ verUsuariosActivos, setVerUsuariosActivos ] = useState(true);
     
     return (
-        <div>
+        <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <h3>{ verUsuariosActivos ? "Listado Usuarios Activos" : "Listado Usuarios Inactivos" }</h3>
-            <div className="form-check">
+            <div className="form-check form-switch">
                 <input
-                    className="form-check-input"
-                    type="checkbox"
-                    id="defaultCheck1"
+                    className="form-check-input" 
+                    type="checkbox" 
+                    defaultChecked 
                     onChange={() => setVerUsuariosActivos(!verUsuariosActivos) }
                 />
                 <label
-                    className="form-check-label"
-                    htmlFor="defaultCheck1">
-                    { verUsuariosActivos ? "Usuarios Inactivos" : "Usuarios Activos" }
+                    className="form-check-label" 
+                    htmlFor="flexSwitchCheckChecked">
+                    { verUsuariosActivos ? "Usuarios Activos" : "Usuarios Inactivos" }
                 </label>
-
             </div>
-            <h3>
-                { verUsuariosActivos ? <UsuarioEntrada usuarios={usuariosActivos} /> : <UsuarioEntrada usuarios={usuariosInactivos} /> }
-            </h3>
 
-        </div>
+            { verUsuariosActivos ? <UsuarioEntrada usuarios={usuariosActivos} /> : <UsuarioEntrada usuarios={usuariosInactivos} /> }                
+                        
+        </main>
     )
 }

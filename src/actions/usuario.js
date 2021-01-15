@@ -31,7 +31,7 @@ export const startListarActivos = (status) => {
     return async(dispatch) => {
         //console.log('SI ENTROOOOOO');
         //dispatch(startLoading());
-        const resp = await fetchConToken(`usuarios/usuarios-activos?activo=${status}`);
+        const resp = await fetchConToken(`usuarios/usuarios-activos?estado=${status}`);
         const body = await resp.json(); 
         //console.log(body);
         if (body.ok && status === 'true') {
