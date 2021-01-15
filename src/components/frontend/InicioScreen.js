@@ -1,5 +1,4 @@
-import React from 'react'
-import { Navbar } from '../ui/Navbar'
+import React from 'react';
 
 export const InicioScreen = () => {
     return (
